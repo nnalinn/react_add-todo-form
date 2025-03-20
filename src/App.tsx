@@ -26,8 +26,8 @@ export const App: React.FC = () => {
   const [titleError, setTitleError] = useState(false);
   const [userError, setUserError] = useState(false);
 
-  const handleAddTodo = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAddTodo = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     if (!title.trim()) {
       setTitleError(true);
@@ -67,9 +67,9 @@ export const App: React.FC = () => {
             type="text"
             data-cy="titleInput"
             value={title}
-            onChange={e => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setTitle(
-                e.target.value.replace(/[^a-zA-Zа-яА-ЯіІїЇєЄ0-9 ]/g, ''),
+                event.target.value.replace(/[^a-zA-Zа-яА-ЯіІїЇєЄ0-9 ]/g, ''),
               );
               setTitleError(false);
             }}
@@ -82,8 +82,8 @@ export const App: React.FC = () => {
           <select
             data-cy="userSelect"
             value={selectedUser ?? ''}
-            onChange={e => {
-              setSelectedUser(Number(e.target.value));
+            onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+              setSelectedUser(Number(event.target.value));
               setUserError(false);
             }}
           >
